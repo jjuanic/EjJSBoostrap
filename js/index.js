@@ -1,41 +1,39 @@
 
-// Variables
-var nombre = 'Beto';
-let apellido = 'Perez'; 
-const dni = 2; // no se puede cambiar el valor
+let usuarios = localStorage.getItem('Usuarios')
+let json = JSON.parse(usuarios);
 
-let falso = false
-let verdadero = true
-
-console.log('Mi nombre es ' + nombre + ' y mi apellido es ' + apellido);
-
-console.log(`Mi nombre es ${nombre} y mi apellido es ${apellido}`) // otra forma de escribir
-
-//operadores: + - * / % (modulo) **(potencia)
-
-//operadores relacionales
-// = != < > <= >=
-
-//operadores lógicos
-// !! && !
-
-let uno = 500;
-let dos = 800;
-
-let resultado = uno + dos;
-console.log(resultado);
-
-// acumulador
-let acumulador = 0;
-acumulador+=5;
-console.log(acumulador);
-acumulador++;
-console.log(acumulador);
-acumulador-=5;
-console.log(acumulador);
+// let listaUsuarios = document.getElementById('usuarios')
+// listaUsuarios.style.color = 'red';
+// listaUsuarios.innerHTML = usuarios;
 
 
+// var lista = document.getElementById('lista')
 
-//nombre = prompt('Ingrese su nombre: ')
+// json.forEach(user => {
+//     var li = document.createElement(li);
+//     li.innerHTML = `<li> usuario: ${user.email} // contraseña: ${user.contraseña}</li>` 
+//     lista.appendChild(li);
+// });
 
-// alert(`Hola ${nombre}, bienvenido a mi página`)
+let boton = document.getElementById('mostrarUsuarios')
+
+boton.addEventListener('click',(e)=> {
+    
+    let tabla = document.getElementById('tablaUsuarios')
+
+    for (let i = 0; i < json.length; i++) {
+        let row = document.createElement('tr')
+
+        let celdaEmail = document.createElement('td')
+        let celdaContraseña = document.createElement('td')
+
+        celdaEmail.textContent = json[i].email
+        celdaContraseña.textContent = json[i].contraseña
+        
+        row.appendChild(celdaEmail)
+        row.appendChild(celdaContraseña)
+        tablaUsuarios.appendChild(row)
+    }
+})
+
+
